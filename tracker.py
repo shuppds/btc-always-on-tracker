@@ -3,14 +3,30 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / 'data' / 'tracker.json'
-API = 'https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=15m&limit=5'
+API = 'https://api.exchange.coinbase.com/products/BTC-USD/candles?granularity=900'
 
 def fetch():
-    req = urllib.request.Request(API, headers={'User-Agent':'BTC-Always-On-Tracker/1.0'})
+    req = urllib.request.Request(
+        API,
+        headers={'User-Agent': 'BTC-Always-On-Tracker/1.0'}
+    )
     with urllib.request.urlopen(req, timeout=20) as r:
         rows = json.loads(r.read().decode())
-    return [{'open_time': int(x[0]), 'open': float(x[1]), 'high': float(x[2]), 'low': float(x[3]), 'close': float(x[4]), 'close_time': int(x[6])} for x in rows]
 
+    # Coinbase rows: [time_seconds, low, high, open, close, volume]
+    rows.sort(key=lambda x: int(x[0]))  # oldest first
+
+    return [
+        {
+            'open_time': int(x[0]) * 1000,
+            'open': float(x[3]),
+            'high': float(x[2]),
+            'low': float(x[1]),
+            'close': float(x[4]),
+            'close_time': int(x[0]) * 1000 + 900000 - 1
+        }
+        for x in rows
+    ]
 def load():
     if DATA.exists():
         try: return json.loads(DATA.read_text())
