@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T20:58:00.904935+00:00",
+  "updated_at": "2026-11-10T21:40:36.756425+00:00",
   "source": "Binance BTCUSDT spot 15m candles",
   "early": [
     {
@@ -422,17 +422,6 @@
     }
   ],
   "post_lock": [
-    {
-      "round_start": 1793268900000,
-      "call_time": 1793269441843,
-      "phase": "post_lock",
-      "signal": "DOWN",
-      "score": 73,
-      "open_price": 80044.16,
-      "status": "HIT",
-      "final_price": 80022.91,
-      "resolved_at": 1793272431376
-    },
     {
       "round_start": 1793271600000,
       "call_time": 1793272431376,
@@ -3718,16 +3707,27 @@
       "signal": "UP",
       "score": 89,
       "open_price": 73591.45,
+      "status": "HIT",
+      "final_price": 73685.73,
+      "resolved_at": 1794346836756
+    },
+    {
+      "round_start": 1794346200000,
+      "call_time": 1794346836756,
+      "phase": "post_lock",
+      "signal": "UP",
+      "score": 89,
+      "open_price": 73887.08,
       "status": "PENDING"
     }
   ],
   "last_seen_closed": 0,
   "notes": "Scheduled cloud tracker. Signals are heuristic, not calibrated probabilities.",
   "current_round": {
-    "round_start": 1794343500000,
-    "open_price": 73591.45,
-    "elapsed_ms": 780904,
-    "current_price": 73591.45,
+    "round_start": 1794346200000,
+    "open_price": 73887.08,
+    "elapsed_ms": 636756,
+    "current_price": 73887.07,
     "latest_signal": "UP",
     "score": 89
   }
